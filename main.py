@@ -12,7 +12,7 @@ import numpy as np
 DATA_FILE = "student_grade_ses_dataset.csv"     # Filepath to csv of raw data
 DATA_SIZE = 1000                                # Total number of records to use, split between training and testing.
 DATA_SIZE_FULL = True                           # Boolean; if true, above value is ignored and full dataset is used.
-TEST_RATIO = 0.25                               # Percentage of records to be put into testing. 0.5 is 50%.
+TEST_RATIO = 0.80                               # Percentage of records to be put into testing. 0.5 is 50%.
 
 # Features to be ignored, whether they are irrelevant dates, redundant features, or not meant to be known at prediction time.
 IGNORE = {"student_id", "academic_year", "survey_date", "family_income_bracket", "final_grade_pct", "grade_class"}

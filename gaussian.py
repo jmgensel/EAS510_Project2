@@ -1,6 +1,3 @@
-import csv
-import random
-import helpers
 from helpers import gaussian
 
 # Read given .csv, create classifier, then test.
@@ -35,14 +32,25 @@ def main (testData, trainData):
     # Check if estimates were correct.
     numCorrect = 0
     numIncorrect = 0
+    TP = 0
+    TN = 0
+    FP = 0
+    FN = 0
     for k, v in predictions.items():
         if v == testDataActualClasses[k]:
             numCorrect += 1
+            if v == 1.0: TP += 1
+            else: TN += 1
         else:
             numIncorrect += 1
+            if v == 1.0: FP += 1
+            else: FN += 1
+    acc = numCorrect / (numCorrect + numIncorrect)
+    pre = TP / numCorrect
+    rec = TP / (TP+FN)
 
-    print(str(numCorrect) + " predictions were accurate, and " + str(numIncorrect) + " were incorrect.")
-    # return float(numCorrect) / (float(numCorrect) + float(numIncorrect))
+    # print(str(numCorrect) + " predictions were accurate, and " + str(numIncorrect) + " were incorrect.")
+    print("Accuracy: " + str(acc) + "; Precision: " + str(pre) + "; Recall: " + str(rec))
 
 # Use training data to calculate a
 def calculateClassifier(data):
@@ -77,8 +85,6 @@ def calculateClassifier(data):
                     meanY[k] += v
                     valsY[k].append(v)
                     cNoneY[k] += 1
-
-    print(cNoneY); print(cNoneN)
 
     # Divide for averages of each tallied value.
     for k, v in meanY.items():

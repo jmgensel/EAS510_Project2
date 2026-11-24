@@ -1,7 +1,5 @@
 import math
 
-
-
 def gaussian(value, mean, sd):
     try: return (
             (1 / (sd * math.sqrt(2 * math.pi))) *
